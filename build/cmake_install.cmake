@@ -1,4 +1,4 @@
-# Install script for directory: /home/tales/Documents/BTI/2021.1/LP1/trabalho-1-mairagomesm
+# Install script for directory: /home/tales/Documents/bti/2022.1/EDB2/unity-2/EDB2-trab2a
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/tales/Documents/BTI/2021.1/LP1/trabalho-1-mairagomesm/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tales/Documents/bti/2022.1/EDB2/unity-2/EDB2-trab2a/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
