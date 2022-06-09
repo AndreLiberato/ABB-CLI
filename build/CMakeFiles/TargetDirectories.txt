@@ -1,0 +1,3 @@
+/home/tales/Documents/BTI/2021.1/LP1/trabalho-1-mairagomesm/build/CMakeFiles/rebuild_cache.dir
+/home/tales/Documents/BTI/2021.1/LP1/trabalho-1-mairagomesm/build/CMakeFiles/edit_cache.dir
+/home/tales/Documents/BTI/2021.1/LP1/trabalho-1-mairagomesm/build/CMakeFiles/keno.dir
