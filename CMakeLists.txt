@@ -4,25 +4,33 @@ project(Calc_TrabEDII VERSION 0.1 LANGUAGES CXX)
 # set the compiling flags
 set (CMAKE_CXX_FLAGS "-Wall -g -fsanitize=address -lm")
 
+# add_compile_options(
+#   -Wall
+#   -Werror
+#   -Wextra
+#   -Wpedantic
+#   -ansi
+#   -Ofast
+#   #-fsanitize=address,undefined
+# )
+
+
 #--------------------------------
 # This is for old cmake versions
-#set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 11)
 #--------------------------------
 
 ### [1] Application target
-# configura o diretório contendo os .hpp,
-# assim você pode incluílos apenas com include "arquivo.h"
-include_directories(include)
+## configura o diretório contendo os .hpp
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-<<<<<<< HEAD
-add_executable(arv src/main.cpp)
-=======
-# Cria um executável com nome "calc", 
-# adiciona neste executável o seu main.cpp e o KenoBet.cpp
-add_executable(calc src/main.cpp)
->>>>>>> ece711bd9b51550b754c1e57b7cce0100eb65f6a
+## Cria um executável com nome "calc".
+add_executable(calc)
 
-# define C++11 standard
-set_property(TARGET arv PROPERTY CXX_STANDARD 11)
+target_sources(
+  calc
+  PRIVATE
+    src/main.cpp
+)
 
 # The end
