@@ -1,3 +1,0 @@
-/home/tales/Documents/bti/2022.1/EDB2/unity-2/EDB2-trab2a/build/CMakeFiles/arv.dir
-/home/tales/Documents/bti/2022.1/EDB2/unity-2/EDB2-trab2a/build/CMakeFiles/edit_cache.dir
-/home/tales/Documents/bti/2022.1/EDB2/unity-2/EDB2-trab2a/build/CMakeFiles/rebuild_cache.dir

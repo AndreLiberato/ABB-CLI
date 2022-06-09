@@ -13,7 +13,6 @@ set (CMAKE_CXX_FLAGS "-Wall -g -fsanitize=address -lm")
 # configura o diretório contendo os .h, assim você pode incluílos apenas com include "arquivo.h"
 include_directories(include)
 
-# Cria um executável com nome "keno", adiciona neste executável o seu main.cpp e o KenoBet.cpp
 add_executable(arv src/main.cpp)
 
 # define C++11 standard
