@@ -5,13 +5,15 @@ project(Calc_TrabEDII VERSION 0.1 LANGUAGES CXX)
 set (CMAKE_CXX_FLAGS "-Wall -g -fsanitize=address -lm")
 
 # add_compile_options(
+#   -g
 #   -Wall
 #   -Werror
 #   -Wextra
 #   -Wpedantic
 #   -ansi
 #   -Ofast
-#   #-fsanitize=address,undefined
+#   -fsanitize=address,undefined
+#   -lm
 # )
 
 
