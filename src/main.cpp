@@ -1,7 +1,16 @@
 #include <iostream>
+using std::cout;
+using std::endl;
+
 #include "BinTree.hpp"
+using bt::BinTree;
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
 
-    return 0;
+  BinTree * binTree = new BinTree();
+  binTree->from_posfix("ab*c+");
+  cout << binTree->to_posfix(binTree->getRoot()) << endl;
+  delete binTree;
+
+  return 0;
 }
