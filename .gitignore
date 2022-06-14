@@ -1,14 +1,13 @@
-<<<<<<< HEAD
-build
-*.ghd
-data/out
-=======
 # Created by https://www.toptal.com/developers/gitignore/api/c++,git,cmake
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,git,cmake
 
 ### Project ###
 # Folders
 data/out
+
+### VSCode ###
+#.vscode
+.vscode
 
 ### C++ ###
 # Prerequisites
@@ -56,6 +55,7 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+build
 
 ### CMake Patch ###
 # External projects
@@ -77,4 +77,3 @@ _deps
 *_REMOTE_*.txt
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,git,cmake
->>>>>>> ece711bd9b51550b754c1e57b7cce0100eb65f6a
