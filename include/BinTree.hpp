@@ -34,7 +34,7 @@ namespace bt {
        * @brief Recursively removes the node from memory with all its sub-nodes.
        * @param A pointer to a node.
        */
-      void remove_node(Node * node){
+      void remove_node(Node * node) {
         if(node->left != nullptr)
           remove_node(node->left);
 
@@ -48,7 +48,7 @@ namespace bt {
        * @brief Gives the root node of the tree.
        * @return The root node of the tree.
        */
-      Node * getRoot(){
+      Node * getRoot() {
         return root;
       }
 
@@ -60,13 +60,15 @@ namespace bt {
       std::string visit(Node * node) {
         if(node != nullptr) 
           return node->data;
+        else
+          return "ERROR"; // TODO: dá pra melhorar isso!
       }
 
       /*
        * @brief Gets a string in posfix notation and converts it to a binary tree.
        * @param posfix: a string containing the posfix notation.
        */
-      void from_posfix(std::string posfix){
+      void from_posfix(std::string posfix) {
         if(posfix != "") {
           std::string::iterator strIt = posfix.end();
           Node * node = root;
@@ -79,7 +81,6 @@ namespace bt {
         }
       }
 
-
       /* 
        * @TODO Ver se a implementação está correta. Tem no slide!
        * @brief Gets a string containing the posfix notation for the tree.
@@ -88,9 +89,9 @@ namespace bt {
        * @return A string containing the posfix notation.
        */
       std::string to_posfix(Node * node, std::string posfix="") {
-        if(node->left != nullptr)
-          posfix += to_posfix(node->right);
         if(node->right != nullptr)
+          posfix += to_posfix(node->right);
+        if(node->left != nullptr)
           posfix += to_posfix(node->left);
         posfix += visit(node);
         return posfix;
@@ -100,7 +101,7 @@ namespace bt {
        * @brief Gives the prefix representation of the tree.
        * @return An string containing the tree's representation in prefix notation.
        */
-      std::string to_prefix(){
+      std::string to_prefix() {
         return "";
       }
 
@@ -108,8 +109,23 @@ namespace bt {
        * @brief Gives the infix representation of the tree.
        * @return An string containing the tree's representation in infix notation. 
        */
-      std::string to_infix(){
-        return "";
+      std::string to_infix(Node * node, std::string posfix="") {
+        // Checks if the node is a leaf or root.
+        posfix += 
+          (((node->left == nullptr && node->right == nullptr) || node == root) ? "" : "(");
+
+        if(node->left != nullptr)
+          posfix += to_infix(node->left);
+
+        posfix += visit(node);
+
+        if(node->right != nullptr)
+          posfix += to_infix(node->right);
+
+        // Checks if the node is a leaf or root.
+        posfix += 
+          (((node->left == nullptr && node->right == nullptr) || node == root) ? "" : ")");
+        return posfix;
       }
 
       /* 
