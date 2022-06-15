@@ -15,19 +15,6 @@ Repositório contendo as especificações do Trabalho da 2ª unidade da discipli
   cmake -B build
   cmake --build build
   ```
-
-  ```cpp
-  if(!exists_dir(build)){
-    create_dir(build);
-    get_in(build);
-    run_command(cmake ..);
-    run_command(cmake --build .);
-  }
-  else{
-    get_in(build);
-    run_command(make);
-  }
-  ```
  
 # Como executar o projeto
 

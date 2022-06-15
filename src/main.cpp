@@ -9,6 +9,7 @@ int main(int argc, char *argv[]) {
 
   BinTree * binTree = new BinTree();
   binTree->from_posfix("ab*c+");
+  binTree->print(binTree->getRoot());
   cout << binTree->to_posfix(binTree->getRoot()) << endl;
   delete binTree;
 
