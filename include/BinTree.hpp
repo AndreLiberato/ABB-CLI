@@ -8,8 +8,8 @@ namespace bt {
     private:
       struct Node{
         std::string data; //!< The information we want to store in the node.
-        Node* left;      //!< A pointer to the left node in the list.
-        Node* right;     //!< A pointer to the right node in the list.
+        Node* left;       //!< A pointer to the left node in the list.
+        Node* right;      //!< A pointer to the right node in the list.
 
         //! Default Ctro.
         Node(const char &d=char{}, Node * l=nullptr, Node * r=nullptr)
@@ -72,11 +72,11 @@ namespace bt {
       bool is_operator(char str) {
         //std::cout << "Verificação:" << str << std::endl;
         return (
-          ( str == '+' ||
-            str == '-' ||
-            str == '*' ||
-            str == '/' ||
-            str == '^' ) ? true : false);
+            ( str == '+' ||
+              str == '-' ||
+              str == '*' ||
+              str == '/' ||
+              str == '^' ) ? true : false);
       }
 
       /*
@@ -88,14 +88,14 @@ namespace bt {
           if( is_operator(postfix.back()) ) {
             /* 
              * Note: To build a binary tree using postfix notation, 
-             * use preorder traversal on right first
+             * use pre-order traversal on right first
              */
 
             node->right = new Node();
             node->left = new Node();
-            
+
             node->data = postfix.back();
-      
+
             postfix.pop_back();
             postfix = from_postfix(node->right, postfix);
             postfix = from_postfix(node->left, postfix);
@@ -148,7 +148,6 @@ namespace bt {
       }
 
       /* 
-       * @TODO Ver se a implementação está correta. Tem no slide!
        * @brief Gets a string containing the postfix notation for the tree.
        * @param postfix: just a variable to write the postfix notation in.
        * @param node an Node containing the node that the tree is going to start to be converted. 
@@ -158,14 +157,14 @@ namespace bt {
         //In postfix, first access the subtree on the left
         if (node->left != nullptr)
           postfix += to_postfix(node->left);
-        
+
         //then on the right
         if (node->right != nullptr)
           postfix += to_postfix(node->right);
 
         //and then visit the node.
         postfix += visit(node);
-        
+
         return postfix;
       }
 
@@ -192,9 +191,9 @@ namespace bt {
       std::string to_infix(Node * node, std::string infix="") {
         // Checks if the node is a leaf or root.
         infix += (
-          ((node->left == nullptr && node->right == nullptr) 
-            || node == root) ? "" : "(" 
-          );
+            ((node->left == nullptr && node->right == nullptr) 
+             || node == root) ? "" : "(" 
+            );
 
         if(node->left != nullptr)
           infix += to_infix(node->left);
@@ -206,9 +205,9 @@ namespace bt {
 
         // Checks if the node is a leaf or root.
         infix += (
-          ((node->left == nullptr && node->right == nullptr) 
-            || node == root) ? "" : ")"
-          );
+            ((node->left == nullptr && node->right == nullptr) 
+             || node == root) ? "" : ")"
+            );
         return infix;
       }
 
