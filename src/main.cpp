@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
+#include "BinTree.hpp"
+
+using namespace bt;
 using std::cout;
 using std::endl;
 
-#include "BinTree.hpp"
-using bt::BinTree;
-//int argc, char *argv[]
-int main() {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
 
   BinTree * binTree = new BinTree();
   std::string str = "ab*c+";
