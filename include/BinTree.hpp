@@ -68,8 +68,8 @@ namespace bt {
        * @brief Gets a string in posfix notation and converts it to a binary tree.
        * @param posfix: a string containing the posfix notation.
        */
-      void from_posfix(Node * node, std::string posfix) {
-        cout << posfix.back() << endl;
+      std::string from_posfix(Node * node, std::string posfix) {
+        //cout << posfix << " -- " << posfix.back() << endl;
         if(!posfix.empty()) {
           if(posfix.back() == '+' || posfix.back() == '-' || posfix.back() == '*' || posfix.back() == '/') {
             node->right = new Node();
@@ -78,16 +78,18 @@ namespace bt {
             node->data = posfix.back();
 
             posfix.pop_back();
-            from_posfix(node->left, posfix);
-            posfix.pop_back();
-            from_posfix(node->right, posfix);
+            posfix = from_posfix(node->left, posfix);
+            posfix = from_posfix(node->right, posfix);
+            return posfix;
           }
 
           else {
             node->data = posfix.back();
             posfix.pop_back();
+            return posfix;
           }
         }
+        return "";
       }
 
       /* 
