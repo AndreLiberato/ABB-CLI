@@ -68,15 +68,24 @@ namespace bt {
        * @brief Gets a string in posfix notation and converts it to a binary tree.
        * @param posfix: a string containing the posfix notation.
        */
-      void from_posfix(std::string posfix) {
-        if(posfix != "") {
-          std::string::iterator strIt = posfix.end();
-          Node * node = root;
-          node->data = *(--strIt);
-          while(strIt > posfix.begin()) {
-            node->left = new Node(*(--strIt));
-            node->right = new Node(*(--strIt));
-            node = node->right;
+      void from_posfix(Node * node, std::string posfix) {
+        cout << posfix.back() << endl;
+        if(!posfix.empty()) {
+          if(posfix.back() == '+' || posfix.back() == '-' || posfix.back() == '*' || posfix.back() == '/') {
+            node->right = new Node();
+            node->left = new Node();
+
+            node->data = posfix.back();
+
+            posfix.pop_back();
+            from_posfix(node->left, posfix);
+            posfix.pop_back();
+            from_posfix(node->right, posfix);
+          }
+
+          else {
+            node->data = posfix.back();
+            posfix.pop_back();
           }
         }
       }
@@ -136,7 +145,8 @@ namespace bt {
        */
       void print(Node * node, std::string prefix="", bool isLeft=false) {
         if(node != nullptr) {
-          std::cout << prefix;
+          std::cout << "\033[0;33m" << prefix;
+          cout << "\033[0m";
 
           std::cout << "\033[1;33m" << (isLeft ? "├──" : "└──" );
           cout << "\033[0m";
