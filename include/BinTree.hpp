@@ -9,8 +9,8 @@ namespace bt {
     private:
       struct Node{
         std::string data; //!< The information we want to store in the node.
-        Node* left;      //!< A pointer to the left node in the list.
-        Node* right;     //!< A pointer to the right node in the list.
+        Node* left;       //!< A pointer to the left node in the list.
+        Node* right;      //!< A pointer to the right node in the list.
 
         //! Default Ctro.
         Node(const char &d=char{}, Node* l=nullptr, Node* r=nullptr)
@@ -55,11 +55,13 @@ namespace bt {
        */
       bool is_operator(char str);
 
+
       /*
        * @brief Gets a string in postfix notation and converts it to a binary tree.
        * @param postfix: a string containing the postfix notation.
        */
       std::string from_postfix(Node* node, std::string postfix);
+
 
       /*
        * @brief Gets a string in prefix notation and converts it to a binary tree.
@@ -68,13 +70,13 @@ namespace bt {
       std::string from_prefix(Node* node, std::string prefix);
 
       /* 
-       * @TODO Ver se a implementação está correta. Tem no slide!
        * @brief Gets a string containing the postfix notation for the tree.
        * @param postfix: just a variable to write the postfix notation in.
        * @param node an Node containing the node that the tree is going to start to be converted. 
        * @return A string containing the postfix notation.
        */
       std::string to_postfix(Node* node, std::string postfix="");
+
 
       /* 
        * @brief Gives the prefix representation of the tree.
@@ -87,6 +89,7 @@ namespace bt {
        * @return An string containing the tree's representation in infix notation. 
        */
       std::string to_infix(Node* node, std::string infix="");
+
 
       /* 
        * @brief Prints the binary tree in a nice way.
