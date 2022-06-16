@@ -2,20 +2,21 @@ cmake_minimum_required(VERSION 3.5)
 project(Calc_TrabEDII VERSION 0.1 LANGUAGES CXX)
 
 # set the compiling flags
-set (CMAKE_CXX_FLAGS "-Wall -g -fsanitize=address -lm")
+# set (CMAKE_CXX_FLAGS "-Wall -g -fsanitize=address -lm")
 
-# add_compile_options(
-#   -g
-#   -Wall
-#   -Werror
-#   -Wextra
-#   -Wpedantic
-#   -ansi
-#   -Ofast
-#   -fsanitize=address,undefined
-#   -lm
-# )
+add_compile_options(
+  -g
+  -Wall
+  -Werror
+  -Wextra
+  -Wpedantic
+  -ansi
+  # -Ofast
+  -fsanitize=address,undefined
+  # -lm
+)
 
+add_link_options(-fsanitize=address,undefined)
 
 #--------------------------------
 # This is for old cmake versions
