@@ -13,7 +13,7 @@ add_compile_options(
   -ansi
   # -Ofast
   -fsanitize=address,undefined
-  # -lm
+  -lm
 )
 
 add_link_options(-fsanitize=address,undefined)

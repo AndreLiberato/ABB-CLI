@@ -12,7 +12,7 @@ void BinTree::remove_node(Node* node) {
 
   if(node->right != nullptr)
     remove_node(node->right);
-
+    
   delete node;
 }
 
