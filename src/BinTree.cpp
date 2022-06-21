@@ -27,15 +27,6 @@ std::string BinTree::visit(Node* node) {
     return "ERROR"; // TODO: dá pra melhorar isso!
 }
 
-bool BinTree::is_operator(char str) {
-  return (
-      ( str == '+' ||
-        str == '-' ||
-        str == '*' ||
-        str == '/' ||
-        str == '^' ) ? true : false);
-}
-
 std::string BinTree::from_postfix(Node* node, std::string postfix) {
   if( !postfix.empty() ) {
     if( is_operator(postfix.back()) ) {

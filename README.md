@@ -4,10 +4,10 @@ Repositório contendo as especificações do Trabalho da 2ª unidade da discipli
 
 # Pastas e especificações
 
-- src - Contém todos os arquivos ``.cpp``;
-- include - Contém todos os arquivos ``.hpp``;
-- data - Contém os arquivos de aposta;
-- build - Contém o ``Makefile``, o binário ``calc*`` e todos os outros arquivos que o ``cmake`` cria.
+- ``src`` - Contém todos os arquivos ``.cpp``;
+- ``include`` - Contém todos os arquivos ``.hpp``;
+- ``data/in`` - Contém os arquivos com as expressões posfixas e prefixas;
+- ``build`` - Contém o ``Makefile``, o binário ``calc`` e todos os outros arquivos que o ``cmake`` cria.
 
 # Como compilar o projeto
 
@@ -17,5 +17,18 @@ Repositório contendo as especificações do Trabalho da 2ª unidade da discipli
   ```
  
 # Como executar o projeto
+  ```
+  ./build/calc
+  ```
 
-## Documento de Especificação
+## Especificação
+  O projeto é complicado usando as seguintes flags de compilação
+  -g
+  -Wall
+  -Werror
+  -Wextra
+  -Wpedantic
+  -ansi
+  -Ofast
+  -fsanitize=address,undefined
+  -lm

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "util.hpp"
 
 namespace bt {
   class BinTree {
@@ -47,13 +48,6 @@ namespace bt {
        * @return The data in the node.
        */
       std::string visit(Node* node);
-
-      /*
-       * @brief Gets a string and checking if the last character is an operator.
-       * @param postfix: a string containing the postfix notation.
-       * @return True if last character is a operator, false otherwise.
-       */
-      bool is_operator(char str);
 
 
       /*

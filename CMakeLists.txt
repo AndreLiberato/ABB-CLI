@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.5)
 project(Calc_TrabEDII VERSION 0.1 LANGUAGES CXX)
 
 # set the compiling flags
-# set (CMAKE_CXX_FLAGS "-Wall -g -fsanitize=address -lm")
 
 add_compile_options(
   -g
@@ -11,7 +10,7 @@ add_compile_options(
   -Wextra
   -Wpedantic
   -ansi
-  # -Ofast
+  -Ofast
   -fsanitize=address,undefined
   -lm
 )
@@ -27,33 +26,15 @@ set (CMAKE_CXX_STANDARD 11)
 ## configura o diretório contendo os .hpp
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# add_library(bintree)
-
-# target_sources(
-#   bintree
-#   PUBLIC
-#     ${CMAKE_CURRENT_SOURCE_DIR}/include/BinTree.hpp
-#   PRIVATE
-#     src/BinTree.cpp
-# )
-
 ## Cria um executável com nome "calc".
 add_executable(calc)
 
 target_sources(
   calc
   PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/BinTree.hpp
     src/main.cpp
     src/BinTree.cpp
+    src/util.cpp
 )
-
-# target_link_libraries(
-#   calc
-#   PRIVATE
-#     bintree
-# )
-
-# target_include_directories(calc PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # The end
