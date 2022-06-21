@@ -109,3 +109,13 @@ int calculator(std::string expression) {
   }
   return result.top();
 }
+
+void check_dir(const std::filesystem::path path) {
+  if (!std::filesystem::exists(path)){
+    if (std::filesystem::create_directory(path)){
+      std::cout << "Directory data/out created success" << std::endl;
+    } else {
+      std::cout << "Directory data/out created fail" << std::endl;
+    }
+  }
+}

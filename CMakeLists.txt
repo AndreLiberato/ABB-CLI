@@ -19,7 +19,7 @@ add_link_options(-fsanitize=address,undefined)
 
 #--------------------------------
 # This is for old cmake versions
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 17)
 #--------------------------------
 
 ### [1] Application target

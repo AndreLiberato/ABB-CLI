@@ -7,6 +7,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
   notation_t prefix = readFile(file_prefix_in);
   notation_t postfix = readFile(file_postfix_in);
 
+  check_dir(file_out_dir);
+
   std::fstream fs = openFile(file_aval_out);
 
   notation_t prefix_from_tree;
