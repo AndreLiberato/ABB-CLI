@@ -58,54 +58,56 @@ void print(std::vector<std::string> notation) {
 int calculator(std::string expression) {
   std::stack<int> result;
   int a, b;
+  size_t pos = 0;
+  std::string delim = " ";
+  std::string number;
+  std::string str;
 
-  for (char character : expression) {
-    switch (character){
-      case '+':
-        a = result.top();
-        result.pop();
-        b = result.top();
-        result.pop();
-        result.push(a+b);
-        break;
+  while( ( pos = expression.find(delim) ) != std::string::npos ) {
+    str = expression.substr(0, pos);
+    expression.erase(0, pos + delim.length());
 
-      case '-':
-        a = result.top();
-        result.pop();
-        b = result.top();
-        result.pop();
-        result.push(b-a);
-        break;
-
-      case '*':
-        a = result.top();
-        result.pop();
-        b = result.top();
-        result.pop();
-        result.push(a*b);
-        break;
-
-      case '/':
-        a = result.top();
-        result.pop();
-        b = result.top();
-        result.pop();
-        result.push(int(b/a));
-        break;
-
-      case '^':
-        a = result.top();
-        result.pop();
-        b = result.top();
-        result.pop();
-        result.push(a^b);
-        break;
-
-      default:
-        std::string c (1, character);
-        result.push(atoi(&c.at(0)));
-        break;
+    if(str == "+") {
+      a = result.top();
+      result.pop();
+      b = result.top();
+      result.pop();
+      result.push(a+b);
     }
+
+    else if(str == "-") {
+      a = result.top();
+      result.pop();
+      b = result.top();
+      result.pop();
+      result.push(b-a);
+    }
+
+    else if(str == "*") {
+      a = result.top();
+      result.pop();
+      b = result.top();
+      result.pop();
+      result.push(a*b);
+    }
+
+    else if(str == "/") {
+      a = result.top();
+      result.pop();
+      b = result.top();
+      result.pop();
+      result.push(int(b/a));
+    }
+
+    else if(str == "^") {
+      a = result.top();
+      result.pop();
+      b = result.top();
+      result.pop();
+    }
+
+    else
+      result.push(stoi(str));
   }
   return result.top();
 }

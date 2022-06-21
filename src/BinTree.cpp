@@ -41,14 +41,27 @@ std::string BinTree::from_postfix(Node* node, std::string postfix) {
       node->data = postfix.back();
 
       postfix.pop_back();
+      postfix.pop_back();
       postfix = from_postfix(node->right, postfix);
       postfix = from_postfix(node->left, postfix);
       return postfix;
     }
 
     else {
-      node->data = postfix.back();
-      postfix.pop_back();
+
+      std::string delim = " ";
+      std::string number;
+
+      size_t pos = 0;
+      if ( ( pos = postfix.find_last_of(delim) ) != std::string::npos ) {
+        node->data = postfix.substr(pos+1, postfix.length());
+        postfix.erase(pos, postfix.length());
+      }
+      else {
+        node->data = postfix.substr(0, postfix.length());
+        postfix.erase(0, postfix.length());
+      }
+
       return postfix;
     }
   }
@@ -97,13 +110,15 @@ std::string BinTree::to_postfix(Node* node, std::string postfix) {
     postfix += to_postfix(node->right);
 
   //and then visit the node.
-  postfix += visit(node);
+  postfix += visit(node) + " ";
 
+  //postfix.pop_back();
+  
   return postfix;
 }
 
 std::string BinTree::to_prefix(Node* node, std::string prefix) {
-  prefix += visit(node);
+  prefix += visit(node) + " ";
 
   if (node->left != nullptr)
     prefix += to_prefix(node->left);
