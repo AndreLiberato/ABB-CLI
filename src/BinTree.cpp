@@ -1,155 +1,122 @@
 #include "BinTree.hpp"
+#include <iterator>
 
-using namespace bt;
+using namespace tree;
 
-BinTree::~BinTree() {
-  remove_node(root);
+bool Node::has_left() {
+  if (this->left != nullptr)
+    return true;
+  return false;
 }
 
-void BinTree::remove_node(Node* node) {
-  if(node->left != nullptr)
-    remove_node(node->left);
+bool Node::has_right() {
+  if (this->right != nullptr)
+    return true;
+  return false;
+}
 
-  if(node->right != nullptr)
-    remove_node(node->right);
+BinTree::~BinTree() {
+  std::cout << "Apagando árvore." << std::endl;
+  destroy_tree(this->root);
+}
+
+void BinTree::destroy_tree(Node* node) {
+  if(node->has_left())
+    destroy_tree(node->left);
+
+  if(node->has_right())
+    destroy_tree(node->right);
 
   delete node;
 }
 
-BinTree::Node* BinTree::getRoot() {
+Node* BinTree::getRoot() {
   return root;
 }
 
-std::string BinTree::visit(Node* node) {
+int BinTree::visit(Node* node) {
   if(node != nullptr) 
     return node->data;
   else
-    return "ERROR"; // TODO: dá pra melhorar isso!
+    return -1; // TODO: dá pra melhorar isso!
 }
 
-std::string BinTree::from_postfix(Node* node, std::string postfix) {
-  if( !postfix.empty() ) {
-    if( is_operator(postfix.back()) ) {
-      /* 
-       * Note: To build a binary tree using postfix notation, 
-       * use preorder traversal on right first
-       */
-
-      node->right = new Node();
-      node->left = new Node();
-
-      node->data = postfix.back();
-
-      postfix.pop_back();
-      postfix.pop_back();
-      postfix = from_postfix(node->right, postfix);
-      postfix = from_postfix(node->left, postfix);
-      return postfix;
-    }
-
-    else {
-
-      std::string delim = " ";
-      std::string number;
-
-      size_t pos = 0;
-      if ( ( pos = postfix.find_last_of(delim) ) != std::string::npos ) {
-        node->data = postfix.substr(pos+1, postfix.length());
-        postfix.erase(pos, postfix.length());
-      }
-      else {
-        node->data = postfix.substr(0, postfix.length());
-        postfix.erase(0, postfix.length());
-      }
-
-      return postfix;
-    }
-  }
-  return "";
-}
-
-std::string BinTree::from_prefix(Node* node, std::string prefix) {
-  if( !prefix.empty() ) {
-    if( is_operator( prefix.front() )) {
-      /* 
-       * Note: To build a binary tree using prefix notation, 
-       * use preorder traversal on right first
-       */
-
-      node->left = new Node();
-      node->right = new Node();
-
-      node->data = prefix.front();
-
-      prefix.erase(prefix.begin());
-
-      prefix = from_prefix(node->left, prefix);
-      prefix = from_prefix(node->right, prefix);
-
-      return prefix;
-    }
-
-    else {
-      node->data = prefix.front();
-
-      prefix.erase(prefix.begin());
-
-      return prefix;
-    }
-  }
-  return "";
-}
-
-std::string BinTree::to_postfix(Node* node, std::string postfix) {
+void BinTree::post_order(Node* node) {
   //In postfix, first access the subtree on the left
   if (node->left != nullptr)
-    postfix += to_postfix(node->left);
+    post_order(node->left);
 
   //then on the right
   if (node->right != nullptr)
-    postfix += to_postfix(node->right);
-
-  //and then visit the node.
-  postfix += visit(node) + " ";
-
-  //postfix.pop_back();
+    post_order(node->right);
   
-  return postfix;
+  visit(node);
 }
 
-std::string BinTree::to_prefix(Node* node, std::string prefix) {
-  prefix += visit(node) + " ";
+void BinTree::pre_order(Node* node) {
+  
+  visit(node);
 
   if (node->left != nullptr)
-    prefix += to_prefix(node->left);
+    pre_order(node->left);
 
   if (node->right != nullptr)
-    prefix += to_prefix(node->right);
-
-  return prefix;
+    pre_order(node->right);
 }
 
-std::string BinTree::to_infix(Node* node, std::string infix) {
-  // Checks if the node is a leaf or root.
-  infix += (
-      ((node->left == nullptr && node->right == nullptr) 
-       || node == root) ? "" : "(" 
-      );
-
+void BinTree::in_order(Node* node) {
   if(node->left != nullptr)
-    infix += to_infix(node->left);
+    in_order(node->left);
 
-  infix += visit(node);
+  visit(node);
 
   if(node->right != nullptr)
-    infix += to_infix(node->right);
+    in_order(node->right);
+}
 
-  // Checks if the node is a leaf or root.
-  infix += (
-      ((node->left == nullptr && node->right == nullptr) 
-       || node == root) ? "" : ")"
-      );
-  return infix;
+void BinTree::insert(int v) {
+  std::cout << "Inserindo Valor: " << v << std::endl;
+
+  Node* node_it {this->root};
+
+  while (true) {
+
+    if (node_it->data > v) {
+
+      if (!node_it->has_left()) {
+        node_it->left = new Node(v);
+        return;
+      }
+      
+      node_it = node_it->left;
+    } else if (node_it->data < v) {
+
+      if (!node_it->has_right()) {
+        node_it->right = new Node(v);
+        return;
+      }
+
+      node_it = node_it->right;
+    } else {
+      std::cout << "Valor já existente!" << std::endl;
+      return;
+    }
+
+  }
+}
+
+Node* search(Node* n, int v) {
+  if (n == nullptr) {
+    return nullptr;
+  } else {
+    if (n->data < v) {
+      search(n->left, v);
+    } else if (n->data > v) {
+      search(n->right, v);
+    }
+  }
+
+  return n;
 }
 
 void BinTree::print(Node* node, std::string prefix, bool isLeft) {
