@@ -7,7 +7,6 @@
 #include <vector>
 #include <stack>
 #include <filesystem>
-#include "BinTree.hpp"
 
 using std::cout;
 using std::endl;

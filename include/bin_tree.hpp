@@ -3,26 +3,10 @@
 
 #include <iostream>
 #include <string>
-#include "util.hpp"
+#include "node.hpp"
 
 namespace tree {
 
-  struct Node{
-    int data;           //!< The information we want to store in the node.
-    Node* left;         //!< A pointer to the left node.
-    Node* right;        //!< A pointer to the right node.
-    uint8_t nodesLeft;  //!< Number of nodes on the left.
-    uint8_t nodesRight; //!< Number of nodes on the right.
-    
-    // Constructor of Node
-    Node(const int d=int{}, Node* l=nullptr, Node* r=nullptr, uint8_t nL=uint8_t{}, uint8_t nR=uint8_t{})
-    : data{d}, left{l}, right{r}, nodesLeft{nL}, nodesRight{nR}
-    { /*empty*/ }
-
-    bool has_left();
-
-    bool has_right();
-  };
 
   class BinTree {
     private:
@@ -50,7 +34,7 @@ namespace tree {
        * @brief Gives the root node of the tree.
        * @return The root node of the tree.
        */
-      Node* getRoot();
+      Node* get_root();
 
       /*
        * @brief Gives the data value of the node.
@@ -80,7 +64,13 @@ namespace tree {
        */
       void in_order(Node* node);
 
+      Node* search(Node* n, int v);
+
       void insert(int v);
+
+      void remove(int v);
+
+      Node* get_bigger_left(Node* n);
 
       /* 
        * @brief Prints the binary tree in a nice way.
@@ -89,6 +79,8 @@ namespace tree {
        * @param isLeft a bool to just to see if the node is a left one.
        */
       void print(Node* node, std::string prefix="", bool isLeft=false);
+
+      void print_tree();
 
   };
 }
