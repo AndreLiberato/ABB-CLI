@@ -1,3 +1,16 @@
+create 5
+insert 2
+insert 1
+insert 3
+insert 4
+insert 8
+insert 6
+insert 7
+insert 9
+insert 10
 print
 median
+remove 6
+remove 5
+remove 3
 at 5

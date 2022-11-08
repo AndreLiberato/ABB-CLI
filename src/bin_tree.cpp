@@ -46,7 +46,7 @@ void BinTree::post_order(Node* node) {
 
 void BinTree::pre_order(Node* node) {
   
-  visit(node);
+  std::cout << node->data << " ";
 
   if (node->left != nullptr)
     pre_order(node->left);

@@ -80,7 +80,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
         tree->median();
         break;
       case command::average:
-        tree->average(tree->get_root());
+        std::cout << "Média: " << tree->average(tree->get_root()) << std::endl;
         break;
       case command::is_full:
         std::cout << "Função ainda não implementada" << std::endl;
@@ -90,6 +90,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
         break;
       case command::pre_order:
         tree->pre_order(tree->get_root());
+        std::cout << std::endl;
         break;
       case command::print:
         tree->print_tree();

@@ -21,7 +21,99 @@ Repositório contendo as especificações do Trabalho da 1ª unidade da discipli
   ```
   ./build/cli
   ```
-## Especificação
+
+# Comandos do projeto
+
+## Create
+  ```
+  create x
+  ```
+  Inicializa uma árvore binária de busca com raíz possuíndo o valor passado x.Toda Árvore Binária de Busca deve ser iniciada antes de poder ser realizado outras operações.
+
+## Insert
+  ```
+  insert x
+  ```
+  Insere um novo nó na árvore binária de busca com valor passado x. Caso valor já exista, é retornado uma mensagem.
+
+## Remove
+  ```
+  remove x
+  ```
+  Remove o nó ná árvore binária de busca com valor passado x. Caso o valor não exista, é retornado uma mensagem.
+
+## Search
+  ```
+  search x
+  ```
+  Busca pelo nó contendo um valor passado x. Caso o valor seja encontrado, é retornado o valor dele e é impresso a sub-árvore no qual esse nó é raiz. Caso não seja encontrado é retornado uma mensagem.
+
+## At
+  ```
+  at x
+  ```
+  Acessa o elemento na posição passada x de um percurso em ordem. Caso a posição exista, é retornado o valor do nó. Caso contrário, é retornado uma mensagem.
+  
+## Position
+  ```
+  position x
+  ```
+  Busca pelo elemento com valor passado x e retorna a sua posição na Árvore Binária de Busca em percurso em ordem. Caso não exista nó com o valor passado x, é retornado uma mensagem.
+
+## Median
+  ```
+  median
+  ```
+  Retorna o elemento mediano da Árvore Binária de Busca.
+
+## Average
+  ```
+  average
+  ```
+  Calcula a média aritmética simples de toda Árvore Binária de Busca.
+
+## Full
+  ```
+  full
+  ```
+  Verifica se a Árvore Binária de Busca é completa.
+
+## Complete
+  ```
+  complete
+  ```
+  Verifica se a Árvore Binária de Busca é completa.
+
+## Pre-order 
+  ```
+  pre
+  ```
+  Imprime os valores do nós da Árvore Binária de Busca em um percurso pré-ordem.
+
+## Print
+  ```
+  print
+  ```
+  Imprime a Árvore binária de busca de forma hierárquica.
+
+## Read
+  ```
+  read ./path/to/file
+  ```
+  Lê um arquivo de texto com comandos válidos. `path/to/file` deve ser substituído pelo caminho até o arquivo que deseja ser lido.
+
+  O projeto possuí um arquivo de leitura de exemplo.
+  Execute: 
+  ```
+  read ./data/example.in
+  ```
+
+## Exit
+  ```
+  exit
+  ```
+  Encerra deleta a Árvore Binária de Busca criada e encerra o programa.
+# Especificação
   O projeto é complicado usando as seguintes flags de compilação
   -g
   -Wall
