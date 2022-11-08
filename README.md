@@ -113,7 +113,8 @@ Repositório contendo as especificações do Trabalho da 1ª unidade da discipli
   exit
   ```
   Encerra deleta a Árvore Binária de Busca criada e encerra o programa.
-# Especificação
+# Observações finais
+## Flags
   O projeto é complicado usando as seguintes flags de compilação
   - g
   - Wall
@@ -124,3 +125,10 @@ Repositório contendo as especificações do Trabalho da 1ª unidade da discipli
   - Ofast
   - fsanitize=address,undefined
   - lm
+
+## Bugs
+  O programa deve ser utilizado seguindo especificamente o padrão de uso. As operações não funcionam em uma Árvore Binária de Busca que não foi iniciada com o métod `create`. O uso indevido das operação irá resultar em um `run_time_error`.
+
+  O programa possuí também duas funções não implementadas, a `ehCheia`e a `ehCompleta`.
+
+  Existem determinados cenários de uso das funções que resultam em um `run_time_error`. Esses cenários são específicos e não foram solucionados devido ao tempo restante para entrega do projeto.
