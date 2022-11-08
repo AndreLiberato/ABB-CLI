@@ -1,32 +1,115 @@
 #include "bin_tree.hpp"
+#include "cli.hpp"
+#include "util.hpp"
 
 using namespace tree;
+using namespace util;
+using namespace cli;
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
-  Node* root = new Node(7);
-  BinTree* tree = new BinTree(root);
+  std::string entry;
+  std::string command;
+  std::string value;
+  command_list_t command_list;
+  uint64_t pos;
 
-  //tree->insert(7);
-  tree->insert(3);
-  tree->insert(5);
-  tree->insert(1);
-  tree->insert(4);
-  tree->insert(6);
-  tree->insert(2);
+  Node* node;
+  BinTree* tree = nullptr;
+  Node* node_search = nullptr;
 
-  tree->insert(11);
-  tree->insert(9);
-  tree->insert(13);
-  tree->insert(12);
-  tree->insert(15);
+  bool for_read = false;
+  
+  while (true) {
 
-  tree->print_tree();
+    std::cout << "ABB_CLI> ";
 
-  tree->remove(7);
+    if (!for_read) {
+      std::getline(std::cin, entry);
+    } else {
+      if (!command_list.empty()) {
+        entry = command_list.front();
+        for_read = true;
+        command_list.erase(command_list.begin());
+      } else {
+        for_read = false;
+        continue;
+      }
+    }
 
-  tree->print_tree();
+    command = split(entry).front();
+    value = split(entry).back();
 
-  delete tree;
+    switch (get_command(command)) {
+      case command::create:
+        std::cout << "Criando árvore - Raíz com valor: " << value << std::endl;
+        if (tree == nullptr) {
+          node = new Node(stoi(value));
+          tree = new BinTree(node);
+          std::cout << "Árvore criada com sucesso" << std::endl;
+        } else {
+          std::cout << "ABB já instânciada" << std::endl;
+        }
+        break;
+      case command::insert:
+        tree->insert(stoi(value));
+        break;
+      case command::remove:
+        tree->remove(stoi(value));
+        break;
+      case command::search:
+        node_search = tree->search(tree->get_root(), stoi(value));
+        if (node_search != nullptr and node_search->data == stoi(value)) {
+          std::cout << "Nó encontrado" << std::endl;
+          tree->print(node_search);
+        } else {
+          std::cout << "Nó não encontrado" << std::endl;
+        }
+        break;
+      case command::at:
+        std::cout << "Posição " << value << ": " << tree->at(stoi(value))->data << std::endl;
+        break;
+      case command::position_of:
+        pos = tree->position_of(stoi(value));
+        if (pos != 0) {
+          std::cout << "Nó com valor " << value << " encontra-se na posição " << pos << std::endl;
+        } else {
+          std::cout << "Nó não encontrado" << std::endl;
+        }
+        break;
+      case command::median:
+        tree->median();
+        break;
+      case command::average:
+        tree->average(tree->get_root());
+        break;
+      case command::is_full:
+        std::cout << "Função ainda não implementada" << std::endl;
+        break;
+      case command::is_complete:
+        std::cout << "Função ainda não implementada" << std::endl;
+        break;
+      case command::pre_order:
+        tree->pre_order(tree->get_root());
+        break;
+      case command::print:
+        tree->print_tree();
+        break;
+      case command::read:
+        command_list = read_file(value);
+        for_read = true;
+        break;
+      case command::exit:
+        delete tree;
+        return EXIT_SUCCESS;
+        break;
+      case command::none:
+        std::cout << "Instrução não reconhecida" << std::endl;
+        break;
+    }
 
+    entry.clear();
+    command.clear();
+    value.clear();
+  }
   return 0;
 }

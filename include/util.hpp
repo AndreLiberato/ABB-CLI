@@ -7,38 +7,46 @@
 #include <vector>
 #include <stack>
 #include <filesystem>
+#include <utility>
+#include "node.hpp"
 
-using std::cout;
-using std::endl;
+namespace util {
 
-#define file_prefix_in "./data/in/prefix.in"
-#define file_postfix_in "./data/in/postfix.in"
+  enum direction {
+    none,
+    left,
+    right
+  }; 
 
-#define file_out_dir "./data/out"
-#define file_prefix_out "./data/out/prefix.out"
-#define file_postfix_out "./data/out/postfix.out"
-#define file_infix_out "./data/out/infix.out"
-#define file_aval_out "./data/out/aval.out"
+  using node_backtrack_t = std::stack<std::pair<tree::Node*, enum direction>>;
+  using node_path_dir_t = std::pair<tree::Node*, enum direction>;
 
-using notation_t = std::vector<std::string>;
+  using command_list_t = std::vector<std::string>;
 
-  /*
-   * @brief Gets a char and checking if is an operator.
-   * @param const char str: a char.
-   * @return True if last character is a operator, false otherwise.
-   */
-bool is_operator(const char str);
+  std::fstream open_file(std::string fileName);
 
-std::fstream openFile(std::string fileName);
+  command_list_t read_file(std::string fileName);
 
-notation_t readFile(std::string fileName);
+  bool c_validate(std::string c, std::string v);
 
-void writeFile(notation_t expressions, std::string fileName);
+}
 
-void print(std::vector<std::string> notation);
+// using std::cout;
+// using std::endl;
 
-int calculator(std::string expression);
+// #define file_prefix_in "./data/in/prefix.in"
+// #define file_postfix_in "./data/in/postfix.in"
 
-void check_dir(const std::filesystem::path path);
+// #define file_out_dir "./data/out"
+// #define file_prefix_out "./data/out/prefix.out"
+// #define file_postfix_out "./data/out/postfix.out"
+// #define file_infix_out "./data/out/infix.out"
+// #define file_aval_out "./data/out/aval.out"
+
+// void writeFile(notation_t expressions, std::string fileName);
+
+// void print(std::vector<std::string> notation);
+
+// void check_dir(const std::filesystem::path path);
 
 #endif

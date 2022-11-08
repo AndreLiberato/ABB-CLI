@@ -3,7 +3,10 @@
 
 #include <iostream>
 #include <string>
+#include <stack>
+#include <cmath>
 #include "node.hpp"
+#include "util.hpp"
 
 namespace tree {
 
@@ -12,6 +15,7 @@ namespace tree {
     private:
       
       Node* root;  //!< The root node.
+      uint64_t number_of_nodes;
 
       /*
       * @brief Recursively removes the node from memory with all its sub-nodes.
@@ -24,7 +28,7 @@ namespace tree {
 
       // @brief The class constructor.
       BinTree(Node* r=new Node())
-      : root{r}
+      : root{r}, number_of_nodes{1}
       { /*empty*/ }
 
       // @brief The class destructor.
@@ -35,6 +39,8 @@ namespace tree {
        * @return The root node of the tree.
        */
       Node* get_root();
+
+      u_int64_t get_number_of_nodes();
 
       /*
        * @brief Gives the data value of the node.
@@ -81,6 +87,24 @@ namespace tree {
       void print(Node* node, std::string prefix="", bool isLeft=false);
 
       void print_tree();
+
+      /*
+        1. int enesimoElemento (int n): retorna o n-ésimo elemento (contando a partir de 1) do percurso
+          em ordem (ordem simétrica) da ABB.
+      */
+      Node* at(u_int64_t i);
+
+      uint64_t position_of(int i);
+
+      int median();
+
+      double average(Node* n);
+
+      void increment(Node* n, util::direction d);
+
+      void decrement(Node* n, util::direction d);
+      
+      int64_t sum_nodes(Node* n, int64_t s=int64_t{0});
 
   };
 }

@@ -1,19 +1,8 @@
 #include "util.hpp"
 
-using notation_t = std::vector<std::string>;
-
-bool is_operator(const char str) {
-  return (
-      ( str == '+' ||
-        str == '-' ||
-        str == '*' ||
-        str == '/' ||
-        str == '^' ) ? true : false);
-}
-
-std::fstream openFile(std::string fileName){
+std::fstream util::open_file(std::string fileName){
   std::fstream fs;
-
+  std::cout << "TESTE: " << fileName << std::endl;
   fs.open(fileName);
 
   if(!fs.is_open()) {
@@ -27,11 +16,11 @@ std::fstream openFile(std::string fileName){
   return fs;
 }
 
-notation_t readFile(std::string fileName) {
+util::command_list_t util::read_file(std::string fileName) {
   std::vector<std::string> eq;
   std::string line;
 
-  std::fstream fs = openFile(fileName);
+  std::fstream fs = util::open_file(fileName);
 
   while (std::getline(fs, line))
     eq.push_back(line);
@@ -41,83 +30,34 @@ notation_t readFile(std::string fileName) {
   return eq;
 }
 
-void writeFile(notation_t expressions, std::string fileName) {
-  std::fstream fs = openFile(fileName);
-
-  for (std::string expression : expressions) {
-    fs << expression << std::endl;
-  }
-  fs.close();
-}
-
-void print(std::vector<std::string> notation) {
-  for(std::string line : notation)
-    std::cout << line << std::endl;
-}
-
-int calculator(std::string expression) {
-  std::stack<int> result;
-  int a, b;
-  size_t pos = 0;
-  std::string delim = " ";
-  std::string number;
-  std::string str;
-
-  while( ( pos = expression.find(delim) ) != std::string::npos ) {
-    str = expression.substr(0, pos);
-    expression.erase(0, pos + delim.length());
-
-    if(str == "+") {
-      a = result.top();
-      result.pop();
-      b = result.top();
-      result.pop();
-      result.push(a+b);
-    }
-
-    else if(str == "-") {
-      a = result.top();
-      result.pop();
-      b = result.top();
-      result.pop();
-      result.push(b-a);
-    }
-
-    else if(str == "*") {
-      a = result.top();
-      result.pop();
-      b = result.top();
-      result.pop();
-      result.push(a*b);
-    }
-
-    else if(str == "/") {
-      a = result.top();
-      result.pop();
-      b = result.top();
-      result.pop();
-      result.push(int(b/a));
-    }
-
-    else if(str == "^") {
-      a = result.top();
-      result.pop();
-      b = result.top();
-      result.pop();
-    }
-
-    else
-      result.push(stoi(str));
-  }
-  return result.top();
-}
-
-void check_dir(const std::filesystem::path path) {
-  if (!std::filesystem::exists(path)){
-    if (std::filesystem::create_directory(path)){
-      std::cout << "Directory data/out created success" << std::endl;
-    } else {
-      std::cout << "Directory data/out created fail" << std::endl;
-    }
+bool util::c_validate(std::string c, std::string v) {
+  if (c == v) {
+    return false;
+  } else {
+    return true;
   }
 }
+
+// void writeFile(notation_t expressions, std::string fileName) {
+//   std::fstream fs = openFile(fileName);
+
+//   for (std::string expression : expressions) {
+//     fs << expression << std::endl;
+//   }
+//   fs.close();
+// }
+
+// void print(std::vector<std::string> notation) {
+//   for(std::string line : notation)
+//     std::cout << line << std::endl;
+// }
+
+// void check_dir(const std::filesystem::path path) {
+//   if (!std::filesystem::exists(path)){
+//     if (std::filesystem::create_directory(path)){
+//       std::cout << "Directory data/out created success" << std::endl;
+//     } else {
+//       std::cout << "Directory data/out created fail" << std::endl;
+//     }
+//   }
+// }

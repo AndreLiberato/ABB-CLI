@@ -9,12 +9,12 @@ namespace tree {
     int data;           //!< The information we want to store in the node.
     Node* left;         //!< A pointer to the left node.
     Node* right;        //!< A pointer to the right node.
-    uint8_t nodesLeft;  //!< Number of nodes on the left.
-    uint8_t nodesRight; //!< Number of nodes on the right.
+    uint64_t on_left;  //!< Number of nodes on the left.
+    uint64_t on_right; //!< Number of nodes on the right.
     
     // Constructor of Node
-    Node(const int d=int{}, Node* l=nullptr, Node* r=nullptr, uint8_t nL=uint8_t{}, uint8_t nR=uint8_t{})
-    : data{d}, left{l}, right{r}, nodesLeft{nL}, nodesRight{nR}
+    Node(const int d=int{0}, Node* l=nullptr, Node* r=nullptr, u_int64_t oL=uint64_t{0}, u_int64_t oR=uint64_t{0})
+    : data{d}, left{l}, right{r}, on_left{oL}, on_right{oR}
     { /*empty*/ }
 
     bool has_left();

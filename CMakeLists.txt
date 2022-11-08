@@ -33,6 +33,7 @@ target_sources(
     src/node.cpp
     src/bin_tree.cpp
     src/util.cpp
+    src/cli.cpp
 )
 
 # The end
