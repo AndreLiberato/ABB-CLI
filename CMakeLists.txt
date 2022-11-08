@@ -12,7 +12,7 @@ add_compile_options(
   -Wextra
   -Wpedantic
   -ansi
-  #-Ofast
+  -Ofast
   -fsanitize=address,undefined
   -lm
 )
