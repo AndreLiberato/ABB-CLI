@@ -15,7 +15,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
 
   Node* node;
   BinTree* tree = nullptr;
-  Node* node_search = nullptr;
+  Node* node_temp = nullptr;
 
   bool for_read = false;
   
@@ -57,16 +57,21 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
         tree->remove(stoi(value));
         break;
       case command::search:
-        node_search = tree->search(tree->get_root(), stoi(value));
-        if (node_search != nullptr and node_search->data == stoi(value)) {
+        node_temp = tree->search(tree->get_root(), stoi(value));
+        if (node_temp != nullptr and node_temp->data == stoi(value)) {
           std::cout << "Nó encontrado" << std::endl;
-          tree->print(node_search);
+          tree->print(node_temp);
         } else {
           std::cout << "Nó não encontrado" << std::endl;
         }
         break;
       case command::at:
-        std::cout << "Posição " << value << ": " << tree->at(stoi(value))->data << std::endl;
+        node_temp = tree->at(stoi(value));
+        if (node_temp != nullptr) {
+          std::cout << "Posição " << value << ": " << node_temp->data << std::endl;
+        } else {
+          std::cout << "Posição não existe" << std::endl;
+        }
         break;
       case command::position_of:
         pos = tree->position_of(stoi(value));
@@ -77,7 +82,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
         }
         break;
       case command::median:
-        tree->median();
+        std::cout << tree->median() << std::endl;
         break;
       case command::average:
         std::cout << "Média: " << tree->average(tree->get_root()) << std::endl;

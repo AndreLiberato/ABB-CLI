@@ -31,22 +31,4 @@ namespace util {
 
 }
 
-// using std::cout;
-// using std::endl;
-
-// #define file_prefix_in "./data/in/prefix.in"
-// #define file_postfix_in "./data/in/postfix.in"
-
-// #define file_out_dir "./data/out"
-// #define file_prefix_out "./data/out/prefix.out"
-// #define file_postfix_out "./data/out/postfix.out"
-// #define file_infix_out "./data/out/infix.out"
-// #define file_aval_out "./data/out/aval.out"
-
-// void writeFile(notation_t expressions, std::string fileName);
-
-// void print(std::vector<std::string> notation);
-
-// void check_dir(const std::filesystem::path path);
-
 #endif

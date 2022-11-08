@@ -37,27 +37,3 @@ bool util::c_validate(std::string c, std::string v) {
     return true;
   }
 }
-
-// void writeFile(notation_t expressions, std::string fileName) {
-//   std::fstream fs = openFile(fileName);
-
-//   for (std::string expression : expressions) {
-//     fs << expression << std::endl;
-//   }
-//   fs.close();
-// }
-
-// void print(std::vector<std::string> notation) {
-//   for(std::string line : notation)
-//     std::cout << line << std::endl;
-// }
-
-// void check_dir(const std::filesystem::path path) {
-//   if (!std::filesystem::exists(path)){
-//     if (std::filesystem::create_directory(path)){
-//       std::cout << "Directory data/out created success" << std::endl;
-//     } else {
-//       std::cout << "Directory data/out created fail" << std::endl;
-//     }
-//   }
-// }
